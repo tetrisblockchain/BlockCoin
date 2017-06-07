@@ -1,4 +1,4 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<RCC>
     <qresource prefix="/icons">
         <file alias="bitcoin">res/icons/bitcoin.png</file>
         <file alias="address-book">res/icons/address-book.png</file>
@@ -46,6 +46,7 @@
         <file alias="splash">res/images/splash.png</file>
         <file alias="splash_testnet">res/images/splash.png</file>
         <file alias="wallet_bgcoin">res/icons/bitcoin.png</file>
+        <file>../../../../Desktop/BLOCKCOIN WALLET/logo</file>
     </qresource>
     <qresource prefix="/movies">
         <file alias="update_spinner">res/movies/update_spinner.mng</file>
@@ -98,5 +99,8 @@
         <file alias="uk">locale/bitcoin_uk.qm</file>
         <file alias="zh_CN">locale/bitcoin_zh_CN.qm</file>
         <file alias="zh_TW">locale/bitcoin_zh_TW.qm</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>../../../../Desktop/BLOCKCOIN WALLET/blcnexpress-logo.png</file>
     </qresource>
 </RCC>
