@@ -1,4 +1,4 @@
-## BlockCoin Alpha Block-Code
+## BlockCoin Alpha Block-Code [BLCN]
 =====================================
 
 [![Build Status](https://travis-ci.org/bitcoin/bitcoin.svg?branch=master)](https://travis-ci.org/bitcoin/bitcoin)
