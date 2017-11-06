@@ -1,5 +1,5 @@
 
-## ![alt text](https://avatars3.githubusercontent.com/u/28805837?s=0&v=4) BlockCoin Alpha Block-Code [BLCN]
+![alt text](https://avatars3.githubusercontent.com/u/28805837?s=0&v=4) ## BlockCoin Alpha Block-Code [BLCN]
 =====================================
 
 [![Build Status](https://travis-ci.org/bitcoin/bitcoin.svg?branch=master)](https://travis-ci.org/bitcoin/bitcoin)
