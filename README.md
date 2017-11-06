@@ -1,4 +1,5 @@
-![alt text](https://avatars3.githubusercontent.com/u/28805837?s=120&v=4)
+![alt text](https://avatars3.githubusercontent.com/u/28805837?s=120&v=4#right)
+img[src*='#right']{ float: right; }
 ## BlockCoin Alpha Block-Code [BLCN]
 =====================================
 
