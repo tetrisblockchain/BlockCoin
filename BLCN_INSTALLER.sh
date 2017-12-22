@@ -68,7 +68,7 @@ compile() {
     make libleveldb.a libmemenv.a
 	if [ $? -ne 0 ]; then error; fi
 	message "Building Coin...this may take a few minutes..."
-    cd BlockCoin/src
+    cd ../
 	make -f makefile.unix
 	if [ $? -ne 0 ]; then error; fi
 	message "Installing BlockCoin..."
