@@ -1,16 +1,16 @@
 #!/bin/sh
 #Version 0.1.1.2
-#Info: Installs Eternityd daemon, Masternode based on privkey, and a simple web monitor.
-#EternityCoin Version 0.12.1 or above
+#Info: Installs BlockCoind daemon, Masternode based on privkey, and a simple web monitor.
+#BlockCoin Version 0.12.1 or above
 #Tested OS: Ubuntu 17.04, 16.04, and 14.04
 #TODO: make script less "ubuntu" or add other linux flavors
-#TODO: remove dependency on sudo user account to run script (i.e. run as root and specifiy chaincoin user so chaincoin user does not require sudo privileges)
+#TODO: remove dependency on sudo user account to run script (i.e. run as root and specifiy BlockCoin user so BlockCoin user does not require sudo privileges)
 #TODO: add specific dependencies depending on build option (i.e. gui requires QT4)
 
 
 noflags() {
 	echo "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄"
-    echo "Usage: install-arc [options]"
+    echo "Usage: install-blcn [options]"
     echo "Valid options are:"
     echo "MASTERNODE_PRIVKEY(Required)"
     echo "Example: install-blcn 6uQoYPjwCs6yknDS9g88XCUnVzcYF6EwXFwZC2JaidKB3x5PAFX"
@@ -21,7 +21,7 @@ noflags() {
 message() {
 	echo "╒════════════════════════════════════════════════════════════════════════════════>>"
 	echo "| $1"
-	echo "╘════════════════════════════════════════════<<<"
+	echo "╘═══════════════════════════════════════════════════════════════════════════════<<<"
 }
 
 error() {
@@ -31,13 +31,13 @@ error() {
 
 success() {
 	#variable later
-	arcticcoind
-	message "SUCCESS! Your BlockCoind has started."
+	BlockCoind
+	message "SUCCESS! Your BlockCoin server has started."
 	exit 0
 }
 
 prepdependencies() { #TODO: add error detection
-	message "Installing dependencies..."
+	message "Installing BlockCoin dependencies..."
     sudo fallocate -l 2G /swapfile
     sudo chown root:root /swapfile
     sudo chmod 0600 /swapfile
@@ -53,7 +53,7 @@ prepdependencies() { #TODO: add error detection
 
 
 clonerepo() { #TODO: add error detection
-	message "Cloning from github repository..."
+	message "Cloning BlockCoin from github repository..."
   	cd ~/
 	#variable later
 	git clone https://github.com/tetrisblockchain/BlockCoin.git
@@ -62,12 +62,12 @@ clonerepo() { #TODO: add error detection
 compile() {
 
 	cd BlockCoin/src/leveldb #TODO: squash relative path
-	message "Preparing to build..."
+	message "Preparing to build BlockCoin..."
 	chmod +x build_detect_platform
     make clean
     make libleveldb.a libmemenv.a
 	if [ $? -ne 0 ]; then error; fi
-	message "Building Coin...this may take a few minutes..."
+	message "Building BlockCoin...this may take a few minutes..."
     cd ../
 	make -f makefile.unix
 	if [ $? -ne 0 ]; then error; fi
@@ -93,7 +93,7 @@ createconf() {
 	mnip=$(curl -s https://api.ipify.org)
 	rpcuser=$(date +%s | sha256sum | base64 | head -c 10 ; echo)
 	rpcpass=$(openssl rand -base64 32)
-	printf "%s\n" "rpcuser=$rpcuser" "rpcpassword=$rpcpass" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=512" "externalip=$mnip" "bind=$mnip" "blockcoin_node=1" > $CONFDIR/$coin.conf
+	printf "%s\n" "rpcuser=$rpcuser" "rpcpassword=$rpcpass" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=512" "blockcoin_node=1" > $CONFDIR/$coin.conf
 
 }
 
@@ -106,7 +106,7 @@ createhttp() {
 	(crontab -l 2>/dev/null; echo "* * * * * echo MN Count:  > ~/web/stats.txt; /usr/local/bin/BlockCoin-cli masternode count >> ~/web/stats.txt; /usr/bin/BlockCoind getinfo >> ~/web/stats.txt") | crontab -
 	mnip=$(curl -s https://api.ipify.org)
 	sudo python3 -m http.server 8000 --bind $mnip 2>/dev/null &
-	echo "Web Server Started!  You can now access your stats page at http://$mnip:8000"
+	echo "BlockCoin Web Server Started!  You can now access your stats page at http://$mnip:8000"
 }
 
 install() {
