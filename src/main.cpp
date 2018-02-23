@@ -2784,7 +2784,7 @@ bool InitBlockIndex() {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1495297493;
+        block.nTime    = 1432113893;
         block.nBits    = 0x1e0ffff0;
         block.nNonce   = 44205;
 
@@ -4529,7 +4529,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
 
     //// debug print
     printf("BlockCoinMiner:\n");
-    printf("proof-of-work found  \n  hash: %s  \ntarget: %s\n", hash.GetHex().c_str(), hashTarget.GetHex().c_str());
+    printf("Proof-of-Work found--yay!  \n  hash: %s  \ntarget: %s\n", hash.GetHex().c_str(), hashTarget.GetHex().c_str());
     pblock->print();
     printf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue).c_str());
 
@@ -4537,7 +4537,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != hashBestChain)
-            return error("BlockCoinMiner : generated block is stale");
+            return error("BlockCoinMiner : generated block is stale--awe");
 
         // Remove key from key pool
         reservekey.KeepKey();
@@ -4551,7 +4551,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
         // Process this block the same as if we had received it from another node
         CValidationState state;
         if (!ProcessBlock(state, NULL, pblock))
-            return error("BlockCoinMiner : ProcessBlock, block not accepted");
+            return error("BlockCoinMiner : ProcessBlock, block not accepted--err, no!");
     }
 
     return true;
@@ -4559,7 +4559,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
 
 void static BlockCoinMiner(CWallet *pwallet)
 {
-    printf("BlockCoinMiner started\n");
+    printf("BlockCoinMiner started--lets get to it!\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     RenameThread("BlockCoin-miner");
 
@@ -4695,7 +4695,7 @@ void static BlockCoinMiner(CWallet *pwallet)
     } }
     catch (boost::thread_interrupted)
     {
-        printf("BlockCoinMiner terminated\n");
+        printf("BlockCoinMiner terminated--we out!\n");
         throw;
     }
 }
